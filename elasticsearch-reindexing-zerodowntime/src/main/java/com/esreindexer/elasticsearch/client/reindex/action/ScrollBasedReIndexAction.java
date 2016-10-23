@@ -63,7 +63,6 @@ public class ScrollBasedReIndexAction {
 				searchResponse =  esClient.getClient().prepareSearchScroll(searchResponse.getScrollId()).setScroll(new Scroll(new TimeValue(60000))).execute().actionGet();
 				if (searchResponse.getHits().getHits().length == 0) 
 				{//Break condition: No hits are returned
-					System.exit(0);
 					bulkProcessor.close();
 					break;
 				}
